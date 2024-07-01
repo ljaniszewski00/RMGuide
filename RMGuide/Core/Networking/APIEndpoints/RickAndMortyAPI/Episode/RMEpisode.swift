@@ -14,10 +14,3 @@ struct RMEpisode: Codable, Identifiable {
         case airDate = "air_date"
     }
 }
-
-extension RMEpisode {
-    var formattedAirDate: Date? {
-        let dateFormatter = DateFormatter.episodeAirDateFormatter
-        return dateFormatter.date(from: airDate)
-    }
-}

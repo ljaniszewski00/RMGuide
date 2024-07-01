@@ -45,7 +45,6 @@
 		16D682052C33482D00D5362C /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D682042C33482D00D5362C /* Color+Extension.swift */; };
 		16D682072C334AEE00D5362C /* LoadingIndicatorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D682062C334AEE00D5362C /* LoadingIndicatorModal.swift */; };
 		16D6820B2C334DB700D5362C /* EmptyCharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D6820A2C334DB700D5362C /* EmptyCharactersListView.swift */; };
-		16D6820D2C33571A00D5362C /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D6820C2C33571A00D5362C /* DateFormatter+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,7 +86,6 @@
 		16D682042C33482D00D5362C /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		16D682062C334AEE00D5362C /* LoadingIndicatorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorModal.swift; sourceTree = "<group>"; };
 		16D6820A2C334DB700D5362C /* EmptyCharactersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCharactersListView.swift; sourceTree = "<group>"; };
-		16D6820C2C33571A00D5362C /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,7 +387,6 @@
 			children = (
 				16D681EF2C332AE300D5362C /* Container+RegisterAPIClient.swift */,
 				16D682042C33482D00D5362C /* Color+Extension.swift */,
-				16D6820C2C33571A00D5362C /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -517,7 +514,6 @@
 				16D681C72C3324E800D5362C /* RickAndMortyEndpoints.swift in Sources */,
 				16D681D22C33278B00D5362C /* RMCharacterStatus.swift in Sources */,
 				16D681A92C331E2300D5362C /* CharacterDetailsView.swift in Sources */,
-				16D6820D2C33571A00D5362C /* DateFormatter+Extension.swift in Sources */,
 				16D681E52C332A2D00D5362C /* Assembler.swift in Sources */,
 				16D682002C33466F00D5362C /* Views.swift in Sources */,
 				16D681FD2C3331ED00D5362C /* Inject.swift in Sources */,

@@ -6,11 +6,19 @@ struct CharactersView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(charactersViewModel.characters, id: \.id) { character in
+                ForEach(charactersViewModel.charactersToDisplay, id: \.id) { character in
                     NavigationLink {
                         CharacterDetailsView(character: character)
                     } label: {
-                        Text(character.name)
+                        HStack {
+                            Image(systemName: Views.Constants.nonFavoriteImageName)
+                                .foregroundStyle(.blue)
+                                .onTapGesture {
+                                    
+                                }
+
+                            Text(character.name)
+                        }
                     }
                 }
             }
@@ -18,6 +26,7 @@ struct CharactersView: View {
                 await charactersViewModel.onRefresh()
             }
         }
+        .searchable(text: $charactersViewModel.searchText)
         .modifier(LoadingIndicatorModal(isPresented: $charactersViewModel.showLoadingModal))
         .modifier(ErrorModal(isPresented: $charactersViewModel.showErrorModal,
                              errorDescription: charactersViewModel.errorText))
@@ -32,6 +41,8 @@ struct CharactersView: View {
 
 private extension Views {
     struct Constants {
+        static let nonFavoriteImageName: String = "star"
+        static let favoriteImageName: String = "star.fill"
         static let navigationTitle: String = "Characters"
     }
 }

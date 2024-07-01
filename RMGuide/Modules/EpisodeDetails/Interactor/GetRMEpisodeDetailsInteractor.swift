@@ -11,8 +11,6 @@ final class GetRMEpisodeDetailsInteractor: GetRMEpisodeDetailsInteracting {
     // MARK: - GetCharactersInteracting
 
     func getRMEpisodeDetails(episodeNumberString: String) async -> Result<RMEpisode, Error> {
-        print(episodeNumberString)
-        
         do {
             return try await apiClient
                 .request(RickAndMortyEndpoints.episode,

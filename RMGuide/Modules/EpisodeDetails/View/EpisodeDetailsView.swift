@@ -17,11 +17,11 @@ struct EpisodeDetailsView: View {
             if let episode = episodeDetailsViewModel.episode {
                 Text(episode.name)
                 
-                if let episodeAirDate = episode.formattedAirDate {
-                    Text(episodeAirDate.description)
-                }
+                Text(episode.airDate)
                 
                 Text(episode.episode)
+                
+                Text(String(episode.characters.count))
             }
         }
         .modifier(LoadingIndicatorModal(isPresented: $episodeDetailsViewModel.showLoadingModal))

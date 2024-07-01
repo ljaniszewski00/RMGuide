@@ -47,6 +47,15 @@ struct CharacterDetailsView: View {
         }
         .padding()
         .navigationTitle(characterDetailsViewModel.character.name)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: Views.Constants.nonFavoriteImageName)
+                }
+            }
+        }
     }
     
     private func getEpisodeLabel(from episodeURLString: String) -> String? {
@@ -67,5 +76,7 @@ private extension Views {
         static let mainVStackSpacing: CGFloat = 10
         static let imagePlaceholderName: String = "person.crop.circle.fill"
         static let episodePrefix: String = "Episode"
+        static let nonFavoriteImageName: String = "star"
+        static let favoriteImageName: String = "star.fill"
     }
 }
