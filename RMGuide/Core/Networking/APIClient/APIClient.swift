@@ -3,20 +3,27 @@ import Foundation
 class APIClient<RequestInputType: Encodable,
                 RequestResponseType: Decodable>: APIClientProtocol {
     func request(_ endpoint: APIEndpoint,
-                 requestInput: RequestInputType) async throws -> Result<RequestResponseType, Error> {
-        let endpointPath = endpoint.path
+                 requestInput: RequestInputType,
+                 additionalPathContent: String? = nil) async throws -> Result<RequestResponseType, Error> {
+        var pathToAppend = endpoint.path
         
-        let url = endpoint.baseURL.appendingPathComponent(endpoint.path)
+        if let additionalPathContent = additionalPathContent {
+            pathToAppend += additionalPathContent
+        }
+        
+        let url = endpoint.baseURL.appendingPathComponent(pathToAppend)
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
         request.allHTTPHeaderFields = endpoint.headers
         
-        do {
-            let encoder = JSONEncoder()
-            let encodedBody = try encoder.encode(requestInput)
-            request.httpBody = encodedBody
-        } catch(let encodingError) {
-            return .failure(APIError.encodingError(encodingError.localizedDescription))
+        if endpoint.method != .get {
+            do {
+                let encoder = JSONEncoder()
+                let encodedBody = try encoder.encode(requestInput)
+                request.httpBody = encodedBody
+            } catch(let encodingError) {
+                return .failure(APIError.encodingError(encodingError.localizedDescription))
+            }
         }
         
         let (data, response) = try await URLSession.shared.data(for: request)
@@ -42,5 +49,6 @@ protocol APIClientProtocol {
     associatedtype RequestResponseType: Decodable
     
     func request(_ endpoint: APIEndpoint,
-                 requestInput: RequestInputType) async throws -> Result<RequestResponseType, Error>
+                 requestInput: RequestInputType,
+                 additionalPathContent: String?) async throws -> Result<RequestResponseType, Error>
 }

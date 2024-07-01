@@ -7,15 +7,15 @@ enum RickAndMortyEndpoints {
 
 extension RickAndMortyEndpoints: APIEndpoint {
     var baseURL: URL {
-        URL(string: "https://rickandmortyapi.com/api")!
+        URL(string: "https://rickandmortyapi.com/api/")!
     }
     
     var path: String {
         switch self {
         case .character:
-            return "/character"
+            return "character/"
         case .episode:
-            return "/episode"
+            return "episode/"
         }
     }
     

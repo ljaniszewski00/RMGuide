@@ -10,11 +10,13 @@ class AnyAPIClient<RequestInputType: Encodable,
     // MARK: - APIClientProtocol
 
     func request(_ endpoint: APIEndpoint,
-                 requestInput: RequestInputType) async throws -> Result<RequestResponseType, Error> {
-        try await _request(endpoint, requestInput)
+                 requestInput: RequestInputType,
+                 additionalPathContent: String? = nil) async throws -> Result<RequestResponseType, Error> {
+        try await _request(endpoint, requestInput, additionalPathContent)
     }
 
     private let _request: (APIEndpoint,
-                           RequestInputType) async throws -> Result<RequestResponseType, Error>
+                           RequestInputType,
+                           String?) async throws -> Result<RequestResponseType, Error>
 
 }
