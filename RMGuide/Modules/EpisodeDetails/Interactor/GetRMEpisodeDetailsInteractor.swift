@@ -1,22 +1,23 @@
 final class GetRMEpisodeDetailsInteractor: GetRMEpisodeDetailsInteracting {
 
-    init(apiClient: AnyAPIClient<RMEpisodeRequestInput, RMEpisode>) {
+    init(apiClient: AnyAPIClient<EmptyRequestInput, RMEpisode>) {
         self.apiClient = apiClient
     }
 
     // MARK: - Properties
 
-    private let apiClient: AnyAPIClient<RMEpisodeRequestInput, RMEpisode>
+    private let apiClient: AnyAPIClient<EmptyRequestInput, RMEpisode>
 
     // MARK: - GetCharactersInteracting
 
     func getRMEpisodeDetails(episodeNumberString: String) async -> Result<RMEpisode, Error> {
-        let requestInput = RMEpisodeRequestInput(episodeNumberString: episodeNumberString)
+        print(episodeNumberString)
         
         do {
             return try await apiClient
                 .request(RickAndMortyEndpoints.episode,
-                         requestInput: requestInput)
+                         requestInput: EmptyRequestInput(),
+                         additionalPathContent: episodeNumberString)
         } catch(let error) {
             return .failure(error)
         }

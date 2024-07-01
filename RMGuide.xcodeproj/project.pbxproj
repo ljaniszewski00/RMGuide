@@ -38,9 +38,14 @@
 		16D681EA2C332A7400D5362C /* CharactersListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681E92C332A7400D5362C /* CharactersListAssembly.swift */; };
 		16D681EC2C332A7C00D5362C /* EpisodeDetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681EB2C332A7C00D5362C /* EpisodeDetailsAssembly.swift */; };
 		16D681F02C332AE300D5362C /* Container+RegisterAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681EF2C332AE300D5362C /* Container+RegisterAPIClient.swift */; };
-		16D681F62C332B4B00D5362C /* RMEpisodeRequestInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681F52C332B4B00D5362C /* RMEpisodeRequestInput.swift */; };
 		16D681FA2C332E4700D5362C /* EmptyRequestInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681F92C332E4700D5362C /* EmptyRequestInput.swift */; };
 		16D681FD2C3331ED00D5362C /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681FC2C3331ED00D5362C /* Inject.swift */; };
+		16D682002C33466F00D5362C /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681FF2C33466F00D5362C /* Views.swift */; };
+		16D682032C33470B00D5362C /* ErrorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D682022C33470B00D5362C /* ErrorModal.swift */; };
+		16D682052C33482D00D5362C /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D682042C33482D00D5362C /* Color+Extension.swift */; };
+		16D682072C334AEE00D5362C /* LoadingIndicatorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D682062C334AEE00D5362C /* LoadingIndicatorModal.swift */; };
+		16D6820B2C334DB700D5362C /* EmptyCharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D6820A2C334DB700D5362C /* EmptyCharactersListView.swift */; };
+		16D6820D2C33571A00D5362C /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D6820C2C33571A00D5362C /* DateFormatter+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,9 +80,14 @@
 		16D681E92C332A7400D5362C /* CharactersListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListAssembly.swift; sourceTree = "<group>"; };
 		16D681EB2C332A7C00D5362C /* EpisodeDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsAssembly.swift; sourceTree = "<group>"; };
 		16D681EF2C332AE300D5362C /* Container+RegisterAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+RegisterAPIClient.swift"; sourceTree = "<group>"; };
-		16D681F52C332B4B00D5362C /* RMEpisodeRequestInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisodeRequestInput.swift; sourceTree = "<group>"; };
 		16D681F92C332E4700D5362C /* EmptyRequestInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRequestInput.swift; sourceTree = "<group>"; };
 		16D681FC2C3331ED00D5362C /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
+		16D681FF2C33466F00D5362C /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		16D682022C33470B00D5362C /* ErrorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModal.swift; sourceTree = "<group>"; };
+		16D682042C33482D00D5362C /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		16D682062C334AEE00D5362C /* LoadingIndicatorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorModal.swift; sourceTree = "<group>"; };
+		16D6820A2C334DB700D5362C /* EmptyCharactersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCharactersListView.swift; sourceTree = "<group>"; };
+		16D6820C2C33571A00D5362C /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				16D681AE2C331E4800D5362C /* CharactersView.swift */,
+				16D6820A2C334DB700D5362C /* EmptyCharactersListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,7 +324,6 @@
 			isa = PBXGroup;
 			children = (
 				16D681CA2C33270F00D5362C /* RMEpisode.swift */,
-				16D681F52C332B4B00D5362C /* RMEpisodeRequestInput.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -366,6 +376,8 @@
 		16D681ED2C332AB300D5362C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				16D682012C3346E700D5362C /* HelperViews */,
+				16D681FE2C33466400D5362C /* Enums */,
 				16D681FB2C3331D900D5362C /* Structures */,
 				16D681EE2C332ABB00D5362C /* Extensions */,
 			);
@@ -376,6 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				16D681EF2C332AE300D5362C /* Container+RegisterAPIClient.swift */,
+				16D682042C33482D00D5362C /* Color+Extension.swift */,
+				16D6820C2C33571A00D5362C /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -386,6 +400,23 @@
 				16D681FC2C3331ED00D5362C /* Inject.swift */,
 			);
 			path = Structures;
+			sourceTree = "<group>";
+		};
+		16D681FE2C33466400D5362C /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				16D681FF2C33466F00D5362C /* Views.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		16D682012C3346E700D5362C /* HelperViews */ = {
+			isa = PBXGroup;
+			children = (
+				16D682022C33470B00D5362C /* ErrorModal.swift */,
+				16D682062C334AEE00D5362C /* LoadingIndicatorModal.swift */,
+			);
+			path = HelperViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -467,7 +498,9 @@
 				16D681CB2C33270F00D5362C /* RMEpisode.swift in Sources */,
 				16D681AD2C331E3900D5362C /* CharactersViewModel.swift in Sources */,
 				16D681AF2C331E4800D5362C /* CharactersView.swift in Sources */,
+				16D682072C334AEE00D5362C /* LoadingIndicatorModal.swift in Sources */,
 				16D681F02C332AE300D5362C /* Container+RegisterAPIClient.swift in Sources */,
+				16D682032C33470B00D5362C /* ErrorModal.swift in Sources */,
 				16D681EA2C332A7400D5362C /* CharactersListAssembly.swift in Sources */,
 				16D681B52C331E7400D5362C /* EpisodeDetailsView.swift in Sources */,
 				16D681A72C331E1700D5362C /* CharacterDetailsViewModel.swift in Sources */,
@@ -476,6 +509,7 @@
 				16D681872C331A9D00D5362C /* ContentView.swift in Sources */,
 				16D681C92C33270A00D5362C /* RMCharacter.swift in Sources */,
 				16D681B32C331E6700D5362C /* EpisodeDetailsViewModel.swift in Sources */,
+				16D6820B2C334DB700D5362C /* EmptyCharactersListView.swift in Sources */,
 				16D681D42C33279200D5362C /* RMCharacterGender.swift in Sources */,
 				16D681BD2C331F6700D5362C /* APIEndpoint.swift in Sources */,
 				16D681C02C331FA500D5362C /* HTTPMethod.swift in Sources */,
@@ -483,8 +517,9 @@
 				16D681C72C3324E800D5362C /* RickAndMortyEndpoints.swift in Sources */,
 				16D681D22C33278B00D5362C /* RMCharacterStatus.swift in Sources */,
 				16D681A92C331E2300D5362C /* CharacterDetailsView.swift in Sources */,
+				16D6820D2C33571A00D5362C /* DateFormatter+Extension.swift in Sources */,
 				16D681E52C332A2D00D5362C /* Assembler.swift in Sources */,
-				16D681F62C332B4B00D5362C /* RMEpisodeRequestInput.swift in Sources */,
+				16D682002C33466F00D5362C /* Views.swift in Sources */,
 				16D681FD2C3331ED00D5362C /* Inject.swift in Sources */,
 				16D681D02C33278300D5362C /* RMCharacterLocation.swift in Sources */,
 				16D681D92C3328BA00D5362C /* RMInfo.swift in Sources */,
@@ -493,6 +528,7 @@
 				16D681FA2C332E4700D5362C /* EmptyRequestInput.swift in Sources */,
 				16D681C22C331FAF00D5362C /* APIError.swift in Sources */,
 				16D681BB2C331F2700D5362C /* AnyAPIClient.swift in Sources */,
+				16D682052C33482D00D5362C /* Color+Extension.swift in Sources */,
 				16D681EC2C332A7C00D5362C /* EpisodeDetailsAssembly.swift in Sources */,
 				16D681B92C331F2100D5362C /* APIClient.swift in Sources */,
 			);

@@ -1,3 +1,5 @@
+import Foundation
+
 struct RMEpisode: Codable, Identifiable {
     let id: Int
     let name: String
@@ -10,5 +12,12 @@ struct RMEpisode: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case id, name, episode, characters, url, created
         case airDate = "air_date"
+    }
+}
+
+extension RMEpisode {
+    var formattedAirDate: Date? {
+        let dateFormatter = DateFormatter.episodeAirDateFormatter
+        return dateFormatter.date(from: airDate)
     }
 }

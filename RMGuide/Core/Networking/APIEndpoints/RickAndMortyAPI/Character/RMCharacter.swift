@@ -12,3 +12,25 @@ struct RMCharacter: Codable, Identifiable {
     let url: String
     let created: String
 }
+
+extension RMCharacter {
+    static let sampleCharacter: RMCharacter = RMCharacter(
+        id: 0,
+        name: "John Doe",
+        status: .dead,
+        species: "Species",
+        type: "Type",
+        gender: .unknown,
+        origin: RMCharacterOrigin(
+            name: "originName",
+            url: "originURL"
+        ),
+        location: RMCharacterLocation(
+            name: "locationName",
+            url: "locationURL"),
+        image: "",
+        episode: ["1", "2", "3"],
+        url: "",
+        created: "2017-11-04T18:48:46.250Z"
+    )
+}
