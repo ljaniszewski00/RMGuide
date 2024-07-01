@@ -34,6 +34,7 @@
 		16D681D62C33289A00D5362C /* RMEpisodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681D52C33289A00D5362C /* RMEpisodeInfo.swift */; };
 		16D681D92C3328BA00D5362C /* RMInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681D82C3328BA00D5362C /* RMInfo.swift */; };
 		16D681DB2C3328DE00D5362C /* RMCharacterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D681DA2C3328DE00D5362C /* RMCharacterInfo.swift */; };
+		16D681E32C3329E900D5362C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 16D681E22C3329E900D5362C /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16D681E32C3329E900D5362C /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +338,9 @@
 			dependencies = (
 			);
 			name = RMGuide;
+			packageProductDependencies = (
+				16D681E22C3329E900D5362C /* Swinject */,
+			);
 			productName = RMGuide;
 			productReference = 16D681812C331A9D00D5362C /* RMGuide.app */;
 			productType = "com.apple.product-type.application";
@@ -364,6 +369,9 @@
 				Base,
 			);
 			mainGroup = 16D681782C331A9D00D5362C;
+			packageReferences = (
+				16D681E12C3329E900D5362C /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = 16D681822C331A9D00D5362C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -620,6 +628,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		16D681E12C3329E900D5362C /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		16D681E22C3329E900D5362C /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 16D681E12C3329E900D5362C /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 16D681792C331A9D00D5362C /* Project object */;
 }
