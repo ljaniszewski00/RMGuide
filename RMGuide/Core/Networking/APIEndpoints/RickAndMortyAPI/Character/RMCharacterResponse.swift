@@ -1,4 +1,4 @@
-struct RMCharacterInfo: Codable {
+struct RMCharacterResponse: Codable {
     let info: RMInfo
     let results: [RMCharacter]
 }
