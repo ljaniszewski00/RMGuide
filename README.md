@@ -26,6 +26,8 @@ It utilises open [Rick and Morty API](https://rickandmortyapi.com/documentation/
 * Pop-up error handling
 * Custom (UIKit) sheet modal
 * Native pull to refresh to get latest data from API
+* Possibility to filter displayed characters by search text and/or favorites only
+* Possibility to display characters in a grid or in a list
 * Support for both light and dark mode
 
 
