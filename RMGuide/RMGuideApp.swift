@@ -4,7 +4,9 @@ import SwiftUI
 struct RMGuideApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                CharactersListView()
+            }
         }
     }
 }

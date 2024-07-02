@@ -54,7 +54,9 @@ struct CharacterDetailsView: View {
                     characterDetailsViewModel.manageCharacterToBeFavorite()
                 } label: {
                     Image(systemName: isFavorite ? Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName)
-                        .foregroundStyle(.yellow)
+                        .foregroundStyle(
+                            .red.opacity(Views.Constants.favoriteButtonImageColorOpacity)
+                        )
                 }
             }
         }
@@ -78,7 +80,8 @@ private extension Views {
         static let mainVStackSpacing: CGFloat = 10
         static let imagePlaceholderName: String = "person.crop.circle.fill"
         static let episodePrefix: String = "Episode"
-        static let nonFavoriteImageName: String = "star"
-        static let favoriteImageName: String = "star.fill"
+        static let nonFavoriteImageName: String = "heart"
+        static let favoriteImageName: String = "heart.fill"
+        static let favoriteButtonImageColorOpacity: CGFloat = 0.8
     }
 }

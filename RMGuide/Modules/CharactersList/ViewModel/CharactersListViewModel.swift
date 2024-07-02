@@ -1,6 +1,6 @@
 import Foundation
 
-final class CharactersViewModel: ObservableObject {
+final class CharactersListViewModel: ObservableObject {
     @Inject private var getRMCharactersInteractor: GetRMCharactersInteracting
     @Inject private var favoriteCharactersManager: UserDefaultsManager<[Int]>
     
@@ -9,6 +9,7 @@ final class CharactersViewModel: ObservableObject {
     @Published var displayOnlyFavoriteCharacters: Bool = false
     @Published var favoriteCharactersIds: [Int] = []
     
+    @Published var displayCharactersList: Bool = false
     @Published var showLoadingModal: Bool = false
     @Published var showErrorModal: Bool = false
     @Published var errorText: String = ""
