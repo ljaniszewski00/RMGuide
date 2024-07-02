@@ -13,6 +13,16 @@ struct RMCharacter: Codable, Identifiable {
     let created: String
 }
 
+extension RMCharacter: Equatable, Hashable {
+    static func == (lhs: RMCharacter, rhs: RMCharacter) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 extension RMCharacter {
     static let sampleCharacter: RMCharacter = RMCharacter(
         id: 0,

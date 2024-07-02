@@ -12,12 +12,10 @@ struct CharacterDetailsView: View {
         
         VStack(alignment: .leading,
                spacing: Views.Constants.mainVStackSpacing) {
-            if let url = URL(string: characterDetailsViewModel.character.url) {
-                AsyncImage(url: url) { image in
-                    image
-                } placeholder: {
-                    Image(systemName: Views.Constants.imagePlaceholderName)
-                }
+            AsyncImage(url: URL(string: characterDetailsViewModel.character.image)) { image in
+                image
+            } placeholder: {
+                Image(systemName: Views.Constants.imagePlaceholderName)
             }
             
             Text(character.name)

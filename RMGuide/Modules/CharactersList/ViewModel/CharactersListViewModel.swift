@@ -10,6 +10,8 @@ final class CharactersListViewModel: ObservableObject {
     @Published var favoriteCharactersIds: [Int] = []
     
     @Published var displayCharactersList: Bool = false
+    @Published var displayCharacterDetailsView: Bool = false
+    
     @Published var showLoadingModal: Bool = false
     @Published var showErrorModal: Bool = false
     @Published var errorText: String = ""
