@@ -128,11 +128,14 @@ private extension Views {
         static let nonFavoriteImageName: String = "heart"
         static let favoriteImageName: String = "heart.fill"
         static let favoriteButtonImageColorOpacity: CGFloat = 0.8
+        static let characterPropertyTextColorOpacity: CGFloat = 0.8
     }
     
     struct EpisodesGrid: View {
         @EnvironmentObject private var characterDetailsViewModel: CharacterDetailsViewModel
         let episodes: [String]
+        
+        @State private var selectedEpisodeNumber: String?
         
         private let columns = [
             GridItem(.adaptive(minimum: Views.Constants.gridItemMinimumSize))
@@ -145,6 +148,7 @@ private extension Views {
                         let episodeLabel = getEpisodeLabel(from: episodeNumber)
                         
                         Button {
+                            selectedEpisodeNumber = episodeNumber
                             characterDetailsViewModel.displayEpisodeDetailsView = true
                         } label: {
                             Text(episodeNumber)
@@ -156,14 +160,13 @@ private extension Views {
                                     in: Circle()
                                 )
                         }
-                        .halfSheet(showSheet: $characterDetailsViewModel.displayEpisodeDetailsView) {
-                            EpisodeDetailsView(
-                                episodeLabel: episodeLabel,
-                                episodeURLString: episodeURLString
-                            )
-                        }
                     }
                 }
+            }
+            .halfSheet(showSheet: $characterDetailsViewModel.displayEpisodeDetailsView) {
+                EpisodeDetailsView(
+                    episodeNumberString: selectedEpisodeNumber ?? ""
+                )
             }
         }
         
@@ -181,6 +184,6 @@ private extension Text {
     func characterPropertyNameTextModifier() -> some View {
         self.font(.callout)
             .fontWeight(.semibold)
-            .foregroundStyle(.gray)
+            .foregroundStyle(.red.opacity(Views.Constants.characterPropertyTextColorOpacity))
     }
 }

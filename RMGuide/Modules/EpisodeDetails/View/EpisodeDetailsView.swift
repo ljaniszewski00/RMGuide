@@ -3,41 +3,97 @@ import SwiftUI
 struct EpisodeDetailsView: View {
     @StateObject private var episodeDetailsViewModel: EpisodeDetailsViewModel
     
-    init(episodeLabel: String, episodeURLString: String) {
+    init(episodeNumberString: String) {
         self._episodeDetailsViewModel = StateObject(
             wrappedValue: EpisodeDetailsViewModel(
-                episodeLabel: episodeLabel,
-                episodeURLString: episodeURLString
+                episodeNumberString: episodeNumberString
             )
         )
     }
     
     var body: some View {
-        VStack {
-            if let episode = episodeDetailsViewModel.episode {
-                Text(episode.name)
+        HStack {
+            VStack(alignment: .leading) {
+                if let episode = episodeDetailsViewModel.episode {
+                    let episodeLabel = Views.Constants.episodeLabelPrefix + " " + episodeDetailsViewModel.episodeNumberString
+                    
+                    Text(episodeLabel)
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                    
+                    Divider()
+                        .padding(.bottom)
+                    
+                    VStack(alignment: .leading,
+                           spacing: Views.Constants.episodePropertiesColumnVStackSpacing) {
+                        VStack(alignment: .leading,
+                               spacing: Views.Constants.episodePropertiesNameValueSpacing) {
+                            Text(Views.Constants.episodePropertyNameTitle)
+                                .episodePropertyNameTextModifier()
+                            Text(episode.name)
+                                .font(.body)
+                        }
+                        
+                        VStack(alignment: .leading,
+                               spacing: Views.Constants.episodePropertiesNameValueSpacing) {
+                            Text(Views.Constants.episodePropertyNameAirDate)
+                                .episodePropertyNameTextModifier()
+                            Text(episode.airDate)
+                                .font(.body)
+                        }
+                        
+                        VStack(alignment: .leading,
+                               spacing: Views.Constants.episodePropertiesNameValueSpacing) {
+                            Text(Views.Constants.episodePropertyNameEpisode)
+                                .episodePropertyNameTextModifier()
+                            Text(episode.episode)
+                                .font(.body)
+                        }
+                        
+                        VStack(alignment: .leading,
+                               spacing: Views.Constants.episodePropertiesNameValueSpacing) {
+                            Text(Views.Constants.episodePropertyNameCharactersCount)
+                                .episodePropertyNameTextModifier()
+                            Text(String(episode.characters.count))
+                                .font(.body)
+                        }
+                    }
+                }
                 
-                Text(episode.airDate)
-                
-                Text(episode.episode)
-                
-                Text(String(episode.characters.count))
+                Spacer()
             }
+            .padding()
+            .padding(.top)
+            
+            Spacer()
         }
         .modifier(LoadingIndicatorModal(isPresented: $episodeDetailsViewModel.showLoadingModal))
         .modifier(ErrorModal(isPresented: $episodeDetailsViewModel.showErrorModal,
                              errorDescription: episodeDetailsViewModel.errorText))
-        .navigationTitle(episodeDetailsViewModel.episodeLabel)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    EpisodeDetailsView(episodeLabel: "2", episodeURLString: "")
+    EpisodeDetailsView(episodeNumberString: "2")
 }
 
 private extension Views {
     struct Constants {
-        static let navigationTitlePrefix: String = "Episode"
+        static let episodeLabelPrefix: String = "Episode"
+        static let episodePropertiesColumnVStackSpacing: CGFloat = 15
+        static let episodePropertiesNameValueSpacing: CGFloat = 7
+        static let episodePropertyNameTitle: String = "Title"
+        static let episodePropertyNameAirDate: String = "Air Date"
+        static let episodePropertyNameEpisode: String = "Episode"
+        static let episodePropertyNameCharactersCount: String = "Characters Count"
+        static let episodePropertyTextColorOpacity: CGFloat = 0.8
+    }
+}
+
+private extension Text {
+    func episodePropertyNameTextModifier() -> some View {
+        self.font(.callout)
+            .fontWeight(.semibold)
+            .foregroundStyle(.red.opacity(Views.Constants.episodePropertyTextColorOpacity))
     }
 }

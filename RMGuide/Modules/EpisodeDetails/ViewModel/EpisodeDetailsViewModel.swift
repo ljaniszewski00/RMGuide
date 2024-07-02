@@ -10,12 +10,10 @@ final class EpisodeDetailsViewModel: ObservableObject {
     @Published var showErrorModal: Bool = false
     @Published var errorText: String = ""
     
-    let episodeLabel: String
-    private let episodeURLString: String
+    let episodeNumberString: String
     
-    init(episodeLabel: String, episodeURLString: String) {
-        self.episodeLabel = episodeLabel
-        self.episodeURLString = episodeURLString
+    init(episodeNumberString: String) {
+        self.episodeNumberString = episodeNumberString
         
         fetchEpisodeDetailsFromCache()
     }
@@ -25,10 +23,6 @@ final class EpisodeDetailsViewModel: ObservableObject {
     }
     
     private func fetchEpisodeDetailsFromCache() {
-        guard let episodeNumberString = episodeLabel.components(separatedBy: " ").last else {
-            return
-        }
-        
         guard let episode = episodeDetailsCacheManager.getRMEpisodeDetailsFromCache(episodeNumberString: episodeNumberString) else {
             Task {
                 await fetchEpisodeDetailsFromAPI()
@@ -42,10 +36,6 @@ final class EpisodeDetailsViewModel: ObservableObject {
     
     @MainActor
     private func fetchEpisodeDetailsFromAPI() async {
-        guard let episodeNumberString = episodeLabel.components(separatedBy: " ").last else {
-            return
-        }
-        
         self.episodeDetailsCacheManager.removeRMEpisodeDetailsFromCache(episodeNumberString: episodeNumberString)
         
         let getEpisodeDetailsResult = await getRMEpisodeDetailsInteractor.getRMEpisodeDetails(episodeNumberString: episodeNumberString)
