@@ -7,6 +7,8 @@ struct RMGuideApp: App {
             NavigationView {
                 CharactersListView()
             }
+            .tint(.red)
+            .accentColor(.red)
         }
     }
 }
