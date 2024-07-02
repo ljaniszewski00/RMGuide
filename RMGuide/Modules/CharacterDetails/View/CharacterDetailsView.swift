@@ -54,6 +54,7 @@ struct CharacterDetailsView: View {
                     characterDetailsViewModel.manageCharacterToBeFavorite()
                 } label: {
                     Image(systemName: isFavorite ? Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName)
+                        .foregroundStyle(.yellow)
                 }
             }
         }

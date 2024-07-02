@@ -13,7 +13,7 @@ struct CharactersView: View {
                         HStack {
                             let isFavorite: Bool = charactersViewModel.isCharacterFavorite(characterId: character.id)
                             Image(systemName: isFavorite ? Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName)
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(.yellow)
                                 .onTapGesture {
                                     charactersViewModel.manageCharacterToBeFavorite(characterId: character.id)
                                 }
@@ -41,6 +41,7 @@ struct CharactersView: View {
                     let imageName: String = charactersViewModel.displayOnlyFavoriteCharacters ?
                     Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName
                     Image(systemName: imageName)
+                        .foregroundStyle(.yellow)
                 }
             }
         }
