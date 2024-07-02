@@ -2,23 +2,39 @@ import Foundation
 
 final class CharactersViewModel: ObservableObject {
     @Inject private var getRMCharactersInteractor: GetRMCharactersInteracting
+    @Inject private var favoriteCharactersManager: UserDefaultsManager<[Int]>
     
     @Published var characters: [RMCharacter] = []
     @Published var searchText: String = ""
+    @Published var displayOnlyFavoriteCharacters: Bool = false
+    @Published var favoriteCharactersIds: [Int] = []
     
     @Published var showLoadingModal: Bool = false
     @Published var showErrorModal: Bool = false
     @Published var errorText: String = ""
     
     var charactersToDisplay: [RMCharacter] {
-        if searchText.isEmpty {
-            return characters
-        } else {
-            return characters
+        var charactersToDisplay = characters
+        
+        if !searchText.isEmpty {
+            charactersToDisplay = charactersToDisplay
                 .filter {
                     $0.name.contains(searchText)
                 }
         }
+        
+        if displayOnlyFavoriteCharacters {
+            guard let favoriteCharactersIds = favoriteCharactersManager.getData() else {
+                return charactersToDisplay
+            }
+            
+            charactersToDisplay = charactersToDisplay
+                .filter { characterToDisplay in
+                    favoriteCharactersIds.contains(characterToDisplay.id)
+                }
+        }
+        
+        return charactersToDisplay
     }
     
     init() {
@@ -27,8 +43,33 @@ final class CharactersViewModel: ObservableObject {
         }
     }
     
+    func onAppear() {
+        fetchFavoriteCharacters()
+    }
+    
     func onRefresh() async {
         await fetchCharacters()
+    }
+    
+    func fetchFavoriteCharacters() {
+        self.favoriteCharactersIds = favoriteCharactersManager.getData() ?? []
+    }
+    
+    func manageCharacterToBeFavorite(characterId: Int) {
+        var favoriteCharactersToBeAdded = favoriteCharactersIds
+        
+        if let characterIndex = favoriteCharactersToBeAdded.firstIndex(of: characterId) {
+            favoriteCharactersToBeAdded.remove(at: characterIndex)
+        } else {
+            favoriteCharactersToBeAdded.append(characterId)
+        }
+        
+        self.favoriteCharactersIds = favoriteCharactersToBeAdded
+        favoriteCharactersManager.addData(favoriteCharactersToBeAdded)
+    }
+    
+    func isCharacterFavorite(characterId: Int) -> Bool {
+        favoriteCharactersIds.contains(characterId)
     }
     
     @MainActor

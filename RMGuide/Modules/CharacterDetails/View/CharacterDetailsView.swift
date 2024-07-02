@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct CharacterDetailsView: View {
-    private var characterDetailsViewModel: CharacterDetailsViewModel
+    @StateObject private var characterDetailsViewModel: CharacterDetailsViewModel
     
     init(character: RMCharacter) {
-        self.characterDetailsViewModel = CharacterDetailsViewModel(character: character)
+        self._characterDetailsViewModel = StateObject(wrappedValue: CharacterDetailsViewModel(character: character))
     }
     
     var body: some View {
@@ -49,10 +49,11 @@ struct CharacterDetailsView: View {
         .navigationTitle(characterDetailsViewModel.character.name)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
+                let isFavorite: Bool = characterDetailsViewModel.isCharacterFavorite
                 Button {
-                    
+                    characterDetailsViewModel.manageCharacterToBeFavorite()
                 } label: {
-                    Image(systemName: Views.Constants.nonFavoriteImageName)
+                    Image(systemName: isFavorite ? Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName)
                 }
             }
         }

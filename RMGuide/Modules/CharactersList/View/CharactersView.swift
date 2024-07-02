@@ -11,10 +11,11 @@ struct CharactersView: View {
                         CharacterDetailsView(character: character)
                     } label: {
                         HStack {
-                            Image(systemName: Views.Constants.nonFavoriteImageName)
+                            let isFavorite: Bool = charactersViewModel.isCharacterFavorite(characterId: character.id)
+                            Image(systemName: isFavorite ? Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName)
                                 .foregroundStyle(.blue)
                                 .onTapGesture {
-                                    
+                                    charactersViewModel.manageCharacterToBeFavorite(characterId: character.id)
                                 }
 
                             Text(character.name)
@@ -32,6 +33,20 @@ struct CharactersView: View {
                              errorDescription: charactersViewModel.errorText))
         .navigationTitle(Views.Constants.navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    charactersViewModel.displayOnlyFavoriteCharacters.toggle()
+                } label: {
+                    let imageName: String = charactersViewModel.displayOnlyFavoriteCharacters ?
+                    Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName
+                    Image(systemName: imageName)
+                }
+            }
+        }
+        .onAppear {
+            charactersViewModel.onAppear()
+        }
     }
 }
 

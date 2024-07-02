@@ -47,6 +47,9 @@
 		16D6820B2C334DB700D5362C /* EmptyCharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D6820A2C334DB700D5362C /* EmptyCharactersListView.swift */; };
 		16D682132C33EC7A00D5362C /* RMEpisodeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D682122C33EC7A00D5362C /* RMEpisodeObject.swift */; };
 		16D6821A2C33F8DA00D5362C /* EpisodeDetailsCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D682192C33F8DA00D5362C /* EpisodeDetailsCacheManager.swift */; };
+		16D6821D2C3414F800D5362C /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D6821C2C3414F800D5362C /* UserDefaultsKey.swift */; };
+		16D6821F2C34151D00D5362C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D6821E2C34151D00D5362C /* UserDefaultsManager.swift */; };
+		16D682212C34215B00D5362C /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D682202C34215B00D5362C /* Array+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,9 @@
 		16D6820A2C334DB700D5362C /* EmptyCharactersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCharactersListView.swift; sourceTree = "<group>"; };
 		16D682122C33EC7A00D5362C /* RMEpisodeObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisodeObject.swift; sourceTree = "<group>"; };
 		16D682192C33F8DA00D5362C /* EpisodeDetailsCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsCacheManager.swift; sourceTree = "<group>"; };
+		16D6821C2C3414F800D5362C /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
+		16D6821E2C34151D00D5362C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		16D682202C34215B00D5362C /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +151,7 @@
 		16D681922C331D5200D5362C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				16D6821B2C3414E000D5362C /* UserDefaults */,
 				16D6820E2C33EC1700D5362C /* Cache */,
 				16D681942C331D5F00D5362C /* Assemblies */,
 				16D681932C331D5800D5362C /* Networking */,
@@ -391,8 +398,9 @@
 		16D681EE2C332ABB00D5362C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				16D681EF2C332AE300D5362C /* Container+Extension.swift */,
+				16D682202C34215B00D5362C /* Array+Extension.swift */,
 				16D682042C33482D00D5362C /* Color+Extension.swift */,
+				16D681EF2C332AE300D5362C /* Container+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -444,6 +452,15 @@
 				16D682192C33F8DA00D5362C /* EpisodeDetailsCacheManager.swift */,
 			);
 			path = CacheManager;
+			sourceTree = "<group>";
+		};
+		16D6821B2C3414E000D5362C /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				16D6821C2C3414F800D5362C /* UserDefaultsKey.swift */,
+				16D6821E2C34151D00D5362C /* UserDefaultsManager.swift */,
+			);
+			path = UserDefaults;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -540,6 +557,7 @@
 				16D6820B2C334DB700D5362C /* EmptyCharactersListView.swift in Sources */,
 				16D681D42C33279200D5362C /* RMCharacterGender.swift in Sources */,
 				16D6821A2C33F8DA00D5362C /* EpisodeDetailsCacheManager.swift in Sources */,
+				16D6821D2C3414F800D5362C /* UserDefaultsKey.swift in Sources */,
 				16D681BD2C331F6700D5362C /* APIEndpoint.swift in Sources */,
 				16D681C02C331FA500D5362C /* HTTPMethod.swift in Sources */,
 				16D681AB2C331E3200D5362C /* GetRMCharactersInteractor.swift in Sources */,
@@ -550,7 +568,9 @@
 				16D682002C33466F00D5362C /* Views.swift in Sources */,
 				16D681FD2C3331ED00D5362C /* Inject.swift in Sources */,
 				16D681D02C33278300D5362C /* RMCharacterLocation.swift in Sources */,
+				16D6821F2C34151D00D5362C /* UserDefaultsManager.swift in Sources */,
 				16D681D92C3328BA00D5362C /* RMInfo.swift in Sources */,
+				16D682212C34215B00D5362C /* Array+Extension.swift in Sources */,
 				16D681852C331A9D00D5362C /* RMGuideApp.swift in Sources */,
 				16D681B12C331E5D00D5362C /* GetRMEpisodeDetailsInteractor.swift in Sources */,
 				16D681FA2C332E4700D5362C /* EmptyRequestInput.swift in Sources */,

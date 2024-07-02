@@ -12,5 +12,9 @@ class CharactersListAssembly: Assembly {
                 )!
             )
         }
+        
+        container.register(UserDefaultsManager.self) { resolver in
+            UserDefaultsManager<[Int]>(key: UserDefaultsKey.favoriteCharacters)
+        }
     }
 }
