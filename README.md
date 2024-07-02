@@ -25,6 +25,7 @@ It utilises open [Rick and Morty API](https://rickandmortyapi.com/documentation/
 * [Swinject](https://developer.apple.com/machine-learning/](https://github.com/Swinject/Swinject)) for dependency injection
 * Pop-up error handling
 * Custom (UIKit) sheet modal
+* Native pull to refresh to get latest data from API
 * Support for both light and dark mode
 
 
