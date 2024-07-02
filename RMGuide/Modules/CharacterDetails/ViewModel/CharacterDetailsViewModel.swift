@@ -6,6 +6,7 @@ final class CharacterDetailsViewModel: ObservableObject {
     let character: RMCharacter
     
     @Published var favoriteCharactersIds: [Int] = []
+    @Published var displayEpisodeDetailsView: Bool = false
     
     var isCharacterFavorite: Bool {
         favoriteCharactersIds.contains(character.id)

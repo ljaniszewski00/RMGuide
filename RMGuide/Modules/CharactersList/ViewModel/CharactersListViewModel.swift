@@ -10,6 +10,7 @@ final class CharactersListViewModel: ObservableObject {
     @Published var favoriteCharactersIds: [Int] = []
     
     @Published var displayCharactersList: Bool = false
+    @Published var displayMode: CharactersListDisplayMode = .grid
     @Published var displayCharacterDetailsView: Bool = false
     
     @Published var showLoadingModal: Bool = false
@@ -56,6 +57,14 @@ final class CharactersListViewModel: ObservableObject {
     
     func fetchFavoriteCharacters() {
         self.favoriteCharactersIds = favoriteCharactersManager.getData() ?? []
+    }
+    
+    func toggleDisplayMode() {
+        if displayMode == .grid {
+            displayMode = .list
+        } else {
+            displayMode = .grid
+        }
     }
     
     func manageCharacterToBeFavorite(characterId: Int) {

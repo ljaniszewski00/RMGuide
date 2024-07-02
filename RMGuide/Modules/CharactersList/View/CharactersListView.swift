@@ -8,8 +8,14 @@ struct CharactersListView: View {
             if charactersListViewModel.displayCharactersList {
                 VStack {
                     List {
-                        Views.CharactersGrid()
-                            .environmentObject(charactersListViewModel)
+                        switch charactersListViewModel.displayMode {
+                        case .list:
+                            Views.CharactersList()
+                                .environmentObject(charactersListViewModel)
+                        case .grid:
+                            Views.CharactersGrid()
+                                .environmentObject(charactersListViewModel)
+                        }
                     }
                     .listStyle(.plain)
                     .refreshable {
@@ -21,6 +27,18 @@ struct CharactersListView: View {
                 .modifier(ErrorModal(isPresented: $charactersListViewModel.showErrorModal,
                                      errorDescription: charactersListViewModel.errorText))
                 .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        let imageName: String = charactersListViewModel.displayMode == .grid ?
+                        CharactersListDisplayMode.list.displayModeIconName : CharactersListDisplayMode.grid.displayModeIconName
+                        
+                        Button {
+                            charactersListViewModel.toggleDisplayMode()
+                        } label: {
+                            Image(systemName: imageName)
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                    
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
                             charactersListViewModel.displayOnlyFavoriteCharacters.toggle()
@@ -76,9 +94,15 @@ private extension Views {
         static let favoriteButtonImageColorOpacity: CGFloat = 0.8
         static let navigationTitleFullList: String = "Characters"
         
+        static let characterListCellOuterHStackSpacing: CGFloat = 10
+        static let characterListCellInnerHStackSpacing: CGFloat = 15
+        static let characterListCellOuterHStackPadding: CGFloat = 5
+        
         static let gridItemMinimumSize: CGFloat = 50
         static let navigationLinkOpacity: CGFloat = 0.0
         static let gridListRowInsetValue: CGFloat = 0
+        static let characterListCellImageSize: CGFloat = 80
+        static let characterListCellImageRadius: CGFloat = 10
         static let characterGridCellVStackSpacing: CGFloat = 0
         static let characterGridCellImageSize: CGFloat = 120
         static let imagePlaceholderName: String = "person.crop.circle.fill"
@@ -136,8 +160,56 @@ private extension Views {
     }
     
     struct CharactersList: View {
+        @EnvironmentObject private var charactersListViewModel: CharactersListViewModel
+        
         var body: some View {
-            EmptyView()
+            ForEach(charactersListViewModel.charactersToDisplay, id: \.id) { character in
+                CharacterListCell(character: character)
+            }
+        }
+    }
+    
+    struct CharacterListCell: View {
+        @EnvironmentObject private var charactersListViewModel: CharactersListViewModel
+        let character: RMCharacter
+        
+        var body: some View {
+            let isFavorite: Bool = charactersListViewModel.isCharacterFavorite(characterId: character.id)
+            
+            NavigationLink {
+                CharacterDetailsView(character: character)
+            } label: {
+                HStack(spacing: Views.Constants.characterListCellOuterHStackSpacing) {
+                    AsyncImage(url: URL(string: character.image)) { image in
+                        image
+                            .listCharacterImageModifier()
+                    } placeholder: {
+                        Image(systemName: Views.Constants.imagePlaceholderName)
+                            .listCharacterImageModifier()
+                    }
+                    
+                    HStack(spacing: Views.Constants.characterListCellInnerHStackSpacing) {
+                        Text(character.name)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.leading)
+                        
+                        Image(systemName: isFavorite ? Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName)
+                            .resizable()
+                            .frame(width: Views.Constants.favoriteImageWidth,
+                                   height: Views.Constants.favoriteImageHeight)
+                            .foregroundStyle(
+                                .red.opacity(Views.Constants.favoriteButtonImageColorOpacity)
+                            )
+                            .onTapGesture {
+                                charactersListViewModel.manageCharacterToBeFavorite(characterId: character.id)
+                            }
+                    }
+                    .padding([.top, .leading],
+                             Views.Constants.characterListCellOuterHStackPadding)
+                }
+            }
+
         }
     }
     
@@ -195,10 +267,10 @@ private extension Views {
                 ZStack(alignment: .topTrailing) {
                     AsyncImage(url: URL(string: character.image)) { image in
                         image
-                            .characterImageModifier()
+                            .gridCharacterImageModifier()
                     } placeholder: {
                         Image(systemName: Views.Constants.imagePlaceholderName)
-                            .characterImageModifier()
+                            .gridCharacterImageModifier()
                     }
                     
                     Image(systemName: isFavorite ? Views.Constants.favoriteImageName : Views.Constants.nonFavoriteImageName)
@@ -235,7 +307,14 @@ private extension Views {
 }
 
 private extension Image {
-    func characterImageModifier() -> some View {
+    func listCharacterImageModifier() -> some View {
+        self.resizable()
+            .frame(width: Views.Constants.characterListCellImageSize,
+                   height: Views.Constants.characterListCellImageSize)
+            .clipShape(RoundedRectangle(cornerRadius: Views.Constants.characterListCellImageRadius))
+    }
+    
+    func gridCharacterImageModifier() -> some View {
         self.resizable()
             .frame(width: Views.Constants.characterGridCellImageSize,
                    height: Views.Constants.characterGridCellImageSize)
