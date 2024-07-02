@@ -14,3 +14,15 @@ struct RMEpisode: Codable, Identifiable {
         case airDate = "air_date"
     }
 }
+
+extension RMEpisode {
+    func toObject() -> RMEpisodeObject {
+        RMEpisodeObject(id: id,
+                        name: name,
+                        airDate: airDate,
+                        episode: episode,
+                        characters: characters,
+                        url: url,
+                        created: created)
+    }
+}

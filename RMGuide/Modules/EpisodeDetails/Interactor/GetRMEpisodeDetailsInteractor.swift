@@ -8,7 +8,7 @@ final class GetRMEpisodeDetailsInteractor: GetRMEpisodeDetailsInteracting {
 
     private let apiClient: AnyAPIClient<EmptyRequestInput, RMEpisode>
 
-    // MARK: - GetCharactersInteracting
+    // MARK: - GetRMEpisodeDetailsInteracting
 
     func getRMEpisodeDetails(episodeNumberString: String) async -> Result<RMEpisode, Error> {
         do {

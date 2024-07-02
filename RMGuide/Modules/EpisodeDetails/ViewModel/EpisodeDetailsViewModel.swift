@@ -2,6 +2,7 @@ import Foundation
 
 final class EpisodeDetailsViewModel: ObservableObject {
     @Inject private var getRMEpisodeDetailsInteractor: GetRMEpisodeDetailsInteracting
+    @Inject private var episodeDetailsCacheManager: EpisodeDetailsCacheManager
     
     @Published var episode: RMEpisode?
     
@@ -16,26 +17,43 @@ final class EpisodeDetailsViewModel: ObservableObject {
         self.episodeLabel = episodeLabel
         self.episodeURLString = episodeURLString
         
-        Task {
-            await fetchEpisodeDetails()
-        }
+        fetchEpisodeDetailsFromCache()
     }
     
     func onRefresh() async {
-        await fetchEpisodeDetails()
+        await fetchEpisodeDetailsFromAPI()
     }
     
-    @MainActor
-    private func fetchEpisodeDetails() async {
+    private func fetchEpisodeDetailsFromCache() {
         guard let episodeNumberString = episodeLabel.components(separatedBy: " ").last else {
             return
         }
+        
+        guard let episode = episodeDetailsCacheManager.getRMEpisodeDetailsFromCache(episodeNumberString: episodeNumberString) else {
+            Task {
+                await fetchEpisodeDetailsFromAPI()
+            }
+            
+            return
+        }
+        
+        self.episode = episode
+    }
+    
+    @MainActor
+    private func fetchEpisodeDetailsFromAPI() async {
+        guard let episodeNumberString = episodeLabel.components(separatedBy: " ").last else {
+            return
+        }
+        
+        self.episodeDetailsCacheManager.removeRMEpisodeDetailsFromCache(episodeNumberString: episodeNumberString)
         
         let getEpisodeDetailsResult = await getRMEpisodeDetailsInteractor.getRMEpisodeDetails(episodeNumberString: episodeNumberString)
         
         switch getEpisodeDetailsResult {
         case .success(let episode):
             self.episode = episode
+            self.episodeDetailsCacheManager.addRMEpisodeDetailsToCache(episode, episodeNumberString: episodeNumberString)
         case .failure(let error):
             self.errorText = error.localizedDescription
             self.showErrorModal = true

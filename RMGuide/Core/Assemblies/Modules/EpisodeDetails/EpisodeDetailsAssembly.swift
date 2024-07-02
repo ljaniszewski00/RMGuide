@@ -12,5 +12,9 @@ class EpisodeDetailsAssembly: Assembly {
                 )!
             )
         }
+        
+        container.register(EpisodeDetailsCacheManager.self) { _ in
+            .shared
+        }
     }
 }
