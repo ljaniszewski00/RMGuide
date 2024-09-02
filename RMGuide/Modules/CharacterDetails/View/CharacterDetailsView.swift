@@ -145,7 +145,6 @@ private extension Views {
             LazyVGrid(columns: columns) {
                 ForEach(episodes, id: \.self) { episodeURLString in
                     if let episodeNumber = getEpisodeNumber(from: episodeURLString) {
-                        let episodeLabel = getEpisodeLabel(from: episodeNumber)
                         
                         Button {
                             selectedEpisodeNumber = episodeNumber
@@ -172,10 +171,6 @@ private extension Views {
         
         private func getEpisodeNumber(from episodeURLString: String) -> String? {
             episodeURLString.components(separatedBy: "/").last
-        }
-        
-        private func getEpisodeLabel(from episodeNumber: String) -> String {
-            Views.Constants.episodePrefix + " " + episodeNumber
         }
     }
 }
