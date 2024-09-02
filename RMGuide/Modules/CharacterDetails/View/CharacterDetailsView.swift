@@ -145,7 +145,6 @@ private extension Views {
             LazyVGrid(columns: columns) {
                 ForEach(episodes, id: \.self) { episodeURLString in
                     if let episodeNumber = getEpisodeNumber(from: episodeURLString) {
-                        
                         Button {
                             selectedEpisodeNumber = episodeNumber
                             characterDetailsViewModel.displayEpisodeDetailsView = true
