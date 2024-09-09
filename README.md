@@ -4,7 +4,7 @@
 
 ## Table of Content
 * [General Info](#general-info)
-* [Technologies and functionalities](#technologies-and-solutions)
+* [Technologies and functionalities](#technologies-and-functionalities)
 * [Status](#status)
 * [Requirements](#requirements)
 * [Screenshots](#screenshots)
