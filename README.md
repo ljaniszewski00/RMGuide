@@ -4,18 +4,18 @@
 
 ## Table of Content
 * [General Info](#general-info)
-* [Technologies](#technologies-and-solutions)
+* [Technologies and functionalities](#technologies-and-solutions)
 * [Status](#status)
 * [Requirements](#requirements)
 * [Screenshots](#screenshots)
-* [Preview Video](#preview-video)
+* [Preview video](#preview-video)
 
 
 ## General info
 Rick and Morthy guide app!  
 It utilises open [Rick and Morty API](https://rickandmortyapi.com/documentation/#introduction) to display information about characters and episodes from the TV series.
 
-## Technologies and solutions
+## Technologies and functionalities
 * Swift (SwiftUI)
 * Xcode 15.4
 * MVVM (Model-View-ViewModel) architecture
@@ -73,7 +73,7 @@ Apple iPhone with iOS 15+ installed
 </p>
 
    
-## Preview Video 
+## Preview video 
 
 https://github.com/ljaniszewski00/RMGuide/assets/78795431/27c1e860-1b3c-4a81-b5c8-bd8f46714581
 
